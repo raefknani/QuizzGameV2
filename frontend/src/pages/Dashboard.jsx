@@ -5,6 +5,7 @@ import profile from "../assets/profile.png";
 import badge1 from "../assets/Badge1.png";
 import badge2 from "../assets/Badge2.png";
 import badge3 from "../assets/Badge3.png";
+import { Link } from "react-router-dom";
 function DefaultHome() {
   return (
     <div className="defaultHome">
@@ -85,8 +86,11 @@ function DefaultHome() {
                       <img src={badge3} alt="none" />
                       <p>Lucky</p>
                     </li>
-                    <li className="breakLine"><p>View All</p></li>
-                    
+                    <li className="breakLine">
+                      <Link to="">
+                        <p>View All</p>
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -94,6 +98,11 @@ function DefaultHome() {
             <li>
               <div className="feachered_category">
                 <p>Featured Category</p>
+                <div className="viewAllBtn">
+                  <Link to="/topics">
+                    <p>View All</p>
+                  </Link>
+                </div>
                 <ul>
                   <li className="opt1">
                     <p>History</p>
@@ -132,20 +141,26 @@ function DefaultHome() {
                 <span>Dashboard</span>
               </i>
             </li>
-            <li className="greyy">
-              <i class="bi bi-headset">
-                <span>Support</span>
-              </i>
-            </li>
-            <li className="greyy">
-              <i class="bi bi-bell-fill">
-                <span>Notification</span>
-              </i>
-            </li>
+            <Link to = "/support">
+              <li className="greyy">
+                <i class="bi bi-headset">
+                  <span>Support</span>
+                </i>
+              </li>
+            </Link>
+            <Link to ="/notifications">
+              <li className="greyy">
+                <i class="bi bi-bell-fill">
+                  <span>Notification</span>
+                </i>
+              </li>
+            </Link>
           </div>
-          <li className="greyy logout">
-            <i class="bi bi-box-arrow-left"></i>Log Out
-          </li>
+          <Link to="/login">
+            <li className="greyy logout">
+              <i class="bi bi-box-arrow-left"></i>Log Out
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
