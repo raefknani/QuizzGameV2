@@ -192,7 +192,7 @@ li i {
   left: 350px;
   width: 860px;
   height: 220px;
-  margin-top: 40px;
+  margin-top: 25px;
 }
 
 .data_boxes {
@@ -210,7 +210,7 @@ li i {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .quizz_passed i {
   font-size: 40px;
@@ -248,7 +248,7 @@ li i {
 
 .second_part_category {
   width: 1110px;
-  height: 350px;
+  height: 380px;
   position: absolute;
   bottom: 0;
   margin-bottom: 35px;
@@ -257,19 +257,77 @@ li i {
 .achievements {
   height: 350px;
   width: 520px;
-  border: 1px solid #8692a6;
-  border-radius: 20px;
 }
 
 .feachered_category {
   height: 350px;
   width: 520px;
-  border: 1px solid #8692a6;
   border-radius: 20px;
+}
+.feachered_category p {
+  font-family: "Poppins", sans-serif;
+  color: #696f79;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .second_part_category ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
+}
+
+.opt1,
+.opt2,
+.opt3,
+.opt4 {
+  height: 164px;
+  width: 240px;
+  border-radius: 20px;
+}
+.opt1,
+.opt2 {
+  margin-bottom: 20px;
+}
+
+.opt1 {
+  background-image: url("../assets/History.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.opt2 {
+  background-image: url("../assets/medcine.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.opt3 {
+  background-image: url("../assets/technology.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.opt4 {
+  background-image: url("../assets/agriculture.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.feachered_category li p {
+  color: white;
+  font-size: 25px;
+  font-weight: 650;
+  margin-top: 115px;
+  margin-left: 20px;
+}
+
+.achievements p {
+  font-family: "Poppins", sans-serif;
+  color: #696f79;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.achievementsContent {
+  height: 350px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }

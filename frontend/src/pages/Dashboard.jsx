@@ -67,10 +67,33 @@ function DefaultHome() {
         <div className="second_part_category">
           <ul>
             <li>
-              <div className="achievements"></div>
+              <div className="achievements">
+                <p>Achievements</p>
+                <div className="achievementsContent">
+                  
+                </div>
+              </div>
             </li>
             <li>
-              <div className="feachered_category"></div>
+              <div className="feachered_category">
+                <p>Featured Category</p>
+                <ul>
+                  <li className="opt1">
+                    <p>History</p>
+                  </li>
+                  <li className="opt2">
+                    <p>Medcine</p>
+                  </li>
+                </ul>
+                <ul>
+                  <li className="opt3">
+                    <p>Technology</p>
+                  </li>
+                  <li className="opt4">
+                    <p>Agriculture</p>
+                  </li>
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
