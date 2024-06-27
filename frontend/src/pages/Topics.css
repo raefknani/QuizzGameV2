@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.selectTopics .p1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 33px;
+  font-weight: 700;
+  color: #696f79;
+  line-height: 50px;
+}
+.selectTopics .p2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #696f79;
+  line-height: 30px;
+}
+
+.p1,
+.p2 {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.SomeTopics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 15px;
+  height: 568px;
+  width: 100%;
+  border: 1px solid #696f79;
+}
+
+.topicBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 140px;
+  margin: 10px;
+  border: 1px solid #696f79;
+  border-radius: 25px;
+}
+
+.SomeTopics ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}

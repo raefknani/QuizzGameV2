@@ -136,11 +136,13 @@ function DefaultHome() {
         </div>
         <ul className="dashboardList">
           <div className="mainButtons">
-            <li className="greyy dashboard">
-              <i class="bi bi-grid-1x2-fill icons">
-                <span>Dashboard</span>
-              </i>
-            </li>
+            <Link to="/dashboard">
+              <li className="greyy dashboard">
+                <i class="bi bi-grid-1x2-fill icons">
+                  <span>Dashboard</span>
+                </i>
+              </li>
+            </Link>
             <Link to = "/support">
               <li className="greyy">
                 <i class="bi bi-headset">
