@@ -2,7 +2,9 @@ import React from "react";
 import "./Dashboard.css";
 import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import profile from "../assets/profile.png";
-
+import badge1 from "../assets/Badge1.png";
+import badge2 from "../assets/Badge2.png";
+import badge3 from "../assets/Badge3.png";
 function DefaultHome() {
   return (
     <div className="defaultHome">
@@ -68,9 +70,24 @@ function DefaultHome() {
           <ul>
             <li>
               <div className="achievements">
-                <p>Achievements</p>
-                <div className="achievementsContent">
-                  
+                <p className="achievmentFont">Achievements</p>
+                <div>
+                  <ul className="achievementsContent">
+                    <li className="badge1">
+                      <img src={badge1} alt="none" />
+                      <p>Comeback</p>
+                    </li>
+                    <li className="badge2">
+                      <img src={badge2} alt="none" />
+                      <p>Winner</p>
+                    </li>
+                    <li className="badge3">
+                      <img src={badge3} alt="none" />
+                      <p>Lucky</p>
+                    </li>
+                    <li className="breakLine"><p>View All</p></li>
+                    
+                  </ul>
                 </div>
               </div>
             </li>
