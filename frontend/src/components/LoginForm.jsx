@@ -1,7 +1,42 @@
 import React from "react";
 import "./LoginForm.css";
 import ChromeIcon from "../assets/chromeIcon.png";
+import { Link } from "react-router-dom";
+
 function LoginForm() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // Validate email and password
+    if (validateEmail(email) && validatePassword(password)) {
+      // Redirect user to the dashboard
+      window.location.href = "/dashboard";
+    } else {
+      // Display error message
+      alert("Invalid email or password");
+    }
+  };
+
+  const handleLoginWithGoogle = () => {
+    // Redirect user to the dashboard
+    window.location.href = "/dashboard";
+  };
+
+  const validateEmail = (email) => {
+    if (email === "root@gmail.com") {
+      return true;
+    }
+    // Replace with your validation logic
+  };
+
+  const validatePassword = (password) => {
+    if (password === "root") {
+      return true;
+    }
+  };
+
   return (
     <div className="login-container">
       <div className="paragraphs">
@@ -9,7 +44,7 @@ function LoginForm() {
         <p className="LoginH2">with your registered Email Address</p>
       </div>
       <div className="LineBreak"></div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label className="labelH1" htmlFor="email">
             Email address*
@@ -43,10 +78,9 @@ function LoginForm() {
         <p className="LoginH3">Or</p>
         <div className="LineBreak2"></div>
       </div>
-      <div className="ChromeButton">
-        <img className="chromeIcon" src={ChromeIcon} />
-        <span>Login with Google
-        </span>
+      <div className="ChromeButton" onClick={handleLoginWithGoogle}>
+        <img className="chromeIcon" src={ChromeIcon} alt="Chrome Icon" />
+        <span>Login with Google</span>
       </div>
     </div>
   );

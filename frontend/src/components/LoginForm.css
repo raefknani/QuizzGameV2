@@ -60,7 +60,7 @@ body {
   height: 28px;
   font-weight: 400;
   font-size: 18px;
-
+  margin-bottom: 15px;
   line-height: 28px;
   color: #8692a6;
 }
@@ -112,14 +112,16 @@ body {
   border-radius: 30px;
 }
 
-.ChromeButton span{
-    margin-left : 120px;
+.ChromeButton span {
+  margin-left: 120px;
 }
 
-.chromeIcon{
-    
-    width: 30px;
-    position: relative;
-    top: 10px;
-    left: 50px;
+.chromeIcon {
+  width: 30px;
+  position: relative;
+  top: 10px;
+  left: 50px;
+}
+.login-container input:focus {
+  outline: none;
 }

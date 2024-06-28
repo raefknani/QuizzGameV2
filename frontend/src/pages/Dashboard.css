@@ -76,7 +76,6 @@ li i {
 }
 
 .FullProfile {
-  margin-top: 20px;
   display: flex;
   position: absolute;
   right: 0;
@@ -88,7 +87,7 @@ li i {
 }
 
 .profileName {
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 15px;
 }
 
@@ -110,14 +109,14 @@ li i {
   border-radius: 30px;
   width: 356px;
   position: relative;
-  left: 20%;
+  left: 25%;
   margin-top: 20px;
 }
 
 .Navbarr button {
   font-family: "Poppins", sans-serif;
   margin-top: 20px;
-  margin-left: 30%;
+  margin-left: 35%;
   width: 200px;
   height: 50px;
   border-radius: 30px;
@@ -125,9 +124,12 @@ li i {
   border: none;
   color: white;
 }
+.Navbarr button:hover {
+  background-color: #5c6b7f;
+}
 
 .Navbarr input::placeholder {
-  padding-left: 50px;
+  padding-left: -20px;
   color: grey;
 }
 
@@ -137,6 +139,11 @@ li i {
   background-position: 5%;
   background-color: white;
   border: none;
+  padding-left: 50px;
+}
+.Navbarr input:focus {
+  outline: none;
+  background-image: none;
 }
 
 .Account {
@@ -391,8 +398,7 @@ a {
   text-decoration: none;
   color: #696f79;
 }
-a:hover{
+a:hover {
   text-decoration: none;
   color: white;
 }
-

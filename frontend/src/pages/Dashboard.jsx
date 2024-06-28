@@ -127,8 +127,8 @@ function DefaultHome() {
       <div>
         <h1 className="QuizzTime greyy">Quiz Time</h1>
         <div className="Navbarr">
-          <input type="text" placeholder="Search" className="search" />
-          <button>Start Quiz</button>
+          <input type="text" placeholder="Search" />
+          <button className="searchBox">Start Quiz</button>
           <div className="FullProfile">
             <i class="bi bi-person-circle profile"></i>
             <span className="profileName">John Doe</span>
@@ -143,14 +143,14 @@ function DefaultHome() {
                 </i>
               </li>
             </Link>
-            <Link to = "/support">
+            <Link to="/support">
               <li className="greyy">
                 <i class="bi bi-headset">
                   <span>Support</span>
                 </i>
               </li>
             </Link>
-            <Link to ="/notifications">
+            <Link to="/notifications">
               <li className="greyy">
                 <i class="bi bi-bell-fill">
                   <span>Notification</span>

@@ -4,46 +4,11 @@ import "./Topics.css";
 import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from "react-router-dom";
 import history from "../assets/History.png";
-function Topics() {
+function HistoryTopic() {
   return (
     <div className="defaultHome">
       <div className="AccountDashboard">
-        <div className="selectTopics">
-          <p className="p1">Select Topic</p>
-          <p className="p2">Featured Category</p>
-        </div>
-        <div className="SomeTopics">
-          <div>
-            <ul>
-              <Link to="/history">
-                <li className="topicBox">
-                  <img src={history} alt="none" />
-                  <p>History</p>
-                </li>
-              </Link>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-            </ul>
-            <ul>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-            </ul>
-            <ul>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-              <li className="topicBox"></li>
-            </ul>
-          </div>
-          <div className="moreBtn">
-            <Link to="alltopics">
-              <button>More</button>
-            </Link>
-          </div>
-        </div>
+        
       </div>
       <div>
         <h1 className="QuizzTime greyy">Quiz Time</h1>
@@ -90,4 +55,4 @@ function Topics() {
   );
 }
 
-export default Topics;
+export default HistoryTopic;
