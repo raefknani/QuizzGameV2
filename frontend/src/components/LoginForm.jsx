@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import ChromeIcon from "../assets/chromeIcon.png";
 import { Link } from "react-router-dom";
 
-function LoginForm() {
+function  LoginForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;

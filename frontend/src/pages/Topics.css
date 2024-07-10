@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+.dashTopics {
+}
 .selectTopics .p1 {
   font-family: "Poppins", sans-serif;
   font-size: 33px;
@@ -11,6 +13,67 @@
   font-family: "Poppins", sans-serif;
   font-size: 20px;
   font-weight: 400;
+  color: #696f79;
+  line-height: 30px;
+}
+
+.QuizzNameBox {
+  font-family: "Poppins", sans-serif;
+  margin: 25px;
+  margin-left: 50px;
+}
+.QuizzNameBox h1 {
+  font-size: 33px;
+  font-weight: 700;
+  color: #696f79;
+  line-height: 50px;
+}
+.QuizzNameBox p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #696f79;
+  line-height: 30px;
+}
+.QuizzImage {
+  width: fit-content;
+  margin-left: 50px;
+}
+.QuizzImage img {
+  width: 400px;
+  height: 250px;
+  border-radius: 25px;
+}
+
+.UlList .ULtitles li {
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+  font-weight: 600;
+  color: #696f79;
+  line-height: 35px;
+  margin: 20px;
+}
+.UlList .ULcontents li {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #696f79;
+  line-height: 30px;
+  margin: 25px;
+}
+.UlList {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 300px;
+  margin-top: 125px;
+}
+.UlList li {
+  list-style-type: none;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
   color: #696f79;
   line-height: 30px;
 }
@@ -31,7 +94,6 @@
 }
 
 .topicBox {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -39,8 +101,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
   height: 150px;
-  margin: 8px;
-  border: 1px solid #696f79;
+  margin: 5px;
   border-radius: 25px;
 }
 
@@ -67,8 +128,13 @@
 .moreBtn button {
   background-color: #696f79;
   color: white;
-  padding: 10px;
-  width: 150px;
+
+  padding-right: 25px;
+  padding-left: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  width: 160px;
   height: 50px;
   border-radius: 20px;
   border: none;
@@ -82,8 +148,48 @@
   font-weight: 700;
   color: white;
   line-height: 30px;
+  position: relative;
+  margin-top: -45px;
+  margin-left: 20px;
+}
 
-  position: absolute;
-  margin-top: 90px;
-  margin-right: 120px;
+.QuizzInst {
+  height: 250px;
+  width: 85%;
+  margin-left: 55px;
+}
+
+.QuizzInst p {
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  color: #696f79;
+}
+.QuizzInst h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 23;
+  font-weight: 600;
+  margin-bottom: 35px;
+  color: #696f79;
+}
+
+/* grid system */
+.previewTopic {
+  margin-left: 15px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Adjust the min width as needed */
+  /* Adjust the gap between items */
+  align-items: start; /* Align items to the start of the grid cells */
+}
+
+.moreBtn {
+  margin-top: 20px;
+  grid-column: span 2; /* Span the "More" button across two columns if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

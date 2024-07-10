@@ -8,7 +8,7 @@
 
 .defaultHome {
   background-color: #f0efef;
-  height: 120vh;
+  height: 130vh;
   width: auto;
 }
 
@@ -164,6 +164,10 @@ li i {
   border-radius: 25px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   background-color: white;
+}
+
+.dashTopics{
+  height: 810px;
 }
 
 .profileImage {
