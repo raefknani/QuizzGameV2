@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import topics from "../assets/topics";
 import "./quiz.css";
+import categories from "../assets/topics";
+
 
 function Quiz() {
+  const { id } = useParams();
+  const { state } = useLocation();
+
+  const topic = state || categories.find((category) => category.id == id);
+
+  if (!topic) return null;
+  
   return (
     <div className="defaultHome">
       <div className="AccountDashboard">
@@ -14,7 +24,7 @@ function Quiz() {
         <div className="StartQuiz">
           <ul>
             <li className="QuizName">
-              <h1 className="quiz_name">General Knowledge Quiz</h1>
+              <h1 className="quiz_name">{topic.id}</h1>
               <p>Answer the question below</p>
             </li>
             <li className="timer-quiz">timer : 30:00Mins</li>
@@ -24,7 +34,9 @@ function Quiz() {
                   display: "flex",
                 }}
               >
-                <li className="Image"></li>
+                <li className="Image">
+                  <img src ={topic.image} alt="" />
+                </li>
                 <li className="QuizQuestion">
                   <h1>Question 1/5</h1>
                   <p>What is the capital of Nigeria?</p>

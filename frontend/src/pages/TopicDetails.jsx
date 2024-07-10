@@ -17,7 +17,7 @@ function TopicDetails() {
     <div className="defaultHome">
       <div className="AccountDashboard">
         <div className="moreBtn">
-          <Link to="/Quiz">
+          <Link to={`/Quiz/${topic.id}`}>
             <button>Start</button>
           </Link>
         </div>
@@ -72,8 +72,6 @@ function TopicDetails() {
         </div>
       </div>
 
-
-      
       <div>
         <h1 className="QuizzTime greyy">Quiz Time</h1>
         <div className="Navbarr">

@@ -32,7 +32,7 @@ function App() {
         {/* end of topics list */}
 
         <Route path="/alltopics" element={<AllTopics />} />
-        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz/:id" element={<Quiz />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
