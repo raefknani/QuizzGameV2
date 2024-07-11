@@ -12,12 +12,15 @@ function Quiz() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [answers, setAnswers] = useState([]);
   const [error, setError] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([]); // New state to store user answers
 
   const topic = state || categories.find((category) => category.id === id);
 
   useEffect(() => {
-    const fetchQuestions = async (retries = 3, delay = 1000) => {
+    const fetchQuestions = async (retries = 1, delay = 1800000) => {
       const url =
         topic.id === "any"
           ? "https://opentdb.com/api.php?amount=5"
@@ -25,7 +28,8 @@ function Quiz() {
 
       try {
         const response = await axios.get(url);
-        setQuestions(response.data.results);
+        const fetchedQuestions = response.data.results;
+        setQuestions(fetchedQuestions);
       } catch (error) {
         if (error.response && error.response.status === 429 && retries > 0) {
           setTimeout(() => fetchQuestions(retries - 1, delay * 2), delay);
@@ -44,19 +48,29 @@ function Quiz() {
     return () => clearInterval(timer);
   }, [topic.id]);
 
+  useEffect(() => {
+    if (questions.length > 0 && currentQuestionIndex < questions.length) {
+      const currentQuestion = questions[currentQuestionIndex];
+      const shuffledAnswers = [
+        currentQuestion.correct_answer,
+        ...currentQuestion.incorrect_answers,
+      ].sort();
+      setAnswers(shuffledAnswers);
+    }
+  }, [questions, currentQuestionIndex]);
+
   if (!topic) return null;
 
   const currentQuestion = questions[currentQuestionIndex];
-  const answers = currentQuestion
-    ? [
-        currentQuestion.correct_answer,
-        ...currentQuestion.incorrect_answers,
-      ].sort()
-    : [];
 
   const handleNextQuestion = () => {
+    const updatedUserAnswers = [...userAnswers, selectedAnswer]; // Store the selected answer
+    setUserAnswers(updatedUserAnswers);
+    console.log(updatedUserAnswers); // Log the answers array
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswer(""); // Reset selected answer for the next question
     } else {
       // Handle quiz completion
       let home = document.getElementsByClassName("ALL")[0];
@@ -64,9 +78,22 @@ function Quiz() {
       home.style.filter = "brightness(50%)";
       let popupElement = document.createElement("div");
       popupElement.className = "YESorNo";
-      ReactDOM.render(<Submit />, popupElement);
+      ReactDOM.createRoot(popupElement).render(<Submit />);
       document.querySelector(".poup").appendChild(popupElement);
+
+      const allAnswers = questions.map((question) => question.correct_answer);
+      console.log("All correct answers:", allAnswers);
+
+      // Calculate the percentage of correct answers
+      const correctAnswersCount = updatedUserAnswers.reduce(
+        (count, answer, index) =>
+          answer === allAnswers[index] ? count + 1 : count,
+        0
+      );
+      const percentage = (correctAnswersCount / questions.length) * 100;
+      console.log(`Percentage of correct answers: ${percentage}%`);
     }
+    console.log("User result:", updatedUserAnswers);
   };
 
   const formatTime = (seconds) => {
@@ -118,6 +145,10 @@ function Quiz() {
                               id={answer}
                               name="answer"
                               value={answer}
+                              onChange={(e) =>
+                                setSelectedAnswer(e.target.value)
+                              }
+                              checked={selectedAnswer === answer}
                             />
                             <label htmlFor={answer}>{answer}</label>
                             <br />
@@ -134,7 +165,9 @@ function Quiz() {
             <h1 className="QuizzTime greyy">Quiz Time</h1>
             <div className="Navbarr">
               <input type="text" placeholder="Search" className="search" />
-              <Link to="/topics"><button>Start Quiz</button></Link>
+              <Link to="/topics">
+                <button>Start Quiz</button>
+              </Link>
               <div className="FullProfile">
                 <i className="bi bi-person-circle profile"></i>
                 <span className="profileName">John Doe</span>
