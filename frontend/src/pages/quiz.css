@@ -52,6 +52,8 @@
   width: fit-content;
 }
 
+.YESorNoz {
+}
 .QuizQuestion h1 {
   font-weight: 600;
   font-size: 23px;
@@ -90,5 +92,14 @@
   margin-left: 40px !important;
 }
 
-.QuestionAnswers input[type="radio"]:checked {
+.YESorNo {
+  position: absolute;
+  z-index: 1;
+  top: 67%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+.ALL {
+  /* filter: grayscale(1); */
+  /* filter: brightness(50%); */
 }

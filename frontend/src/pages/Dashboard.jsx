@@ -128,7 +128,7 @@ function DefaultHome() {
         <h1 className="QuizzTime greyy">Quiz Time</h1>
         <div className="Navbarr">
           <input type="text" placeholder="Search" />
-          <button className="searchBox">Start Quiz</button>
+          <Link to="/topics"><button>Start Quiz</button></Link>
           <div className="FullProfile">
             <i class="bi bi-person-circle profile"></i>
             <span className="profileName">John Doe</span>

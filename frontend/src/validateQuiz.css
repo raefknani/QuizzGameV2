@@ -1,0 +1,41 @@
+.QuizValidation {
+  background-color: white;
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.QuizValidation img {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.QuizValidation p {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 180px;
+}
+.QuizValidation ul{
+  display: flex;
+  position: absolute;
+  top: 80%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin-right:50px ;
+}
+.QuizValidation li{
+    margin-left: 210px;
+}
+
+
+
