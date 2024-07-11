@@ -66,7 +66,7 @@ function Quiz() {
   const handleNextQuestion = () => {
     const updatedUserAnswers = [...userAnswers, selectedAnswer]; // Store the selected answer
     setUserAnswers(updatedUserAnswers);
-    console.log(updatedUserAnswers); // Log the answers array
+    // console.log(updatedUserAnswers); // Log the answers array
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -82,7 +82,7 @@ function Quiz() {
       document.querySelector(".poup").appendChild(popupElement);
 
       const allAnswers = questions.map((question) => question.correct_answer);
-      console.log("All correct answers:", allAnswers);
+      // console.log("All correct answers:", allAnswers);
 
       // Calculate the percentage of correct answers
       const correctAnswersCount = updatedUserAnswers.reduce(
@@ -93,7 +93,7 @@ function Quiz() {
       const percentage = (correctAnswersCount / questions.length) * 100;
       console.log(`Percentage of correct answers: ${percentage}%`);
     }
-    console.log("User result:", updatedUserAnswers);
+    // console.log("User result:", updatedUserAnswers);
   };
 
   const formatTime = (seconds) => {
