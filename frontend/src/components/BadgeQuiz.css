@@ -1,0 +1,27 @@
+.BadgeQuiz {
+  background-color: white;
+  height: 400px;
+  width: 500px;
+  position: absolute;
+  top: 65%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  text-align: center;
+}
+.BadgeQuiz img {
+  margin-top: 65px;
+  margin-bottom: 30px;
+}
+
+.QuizReview {
+  margin-top: 70px;
+  margin-bottom: 5px;
+}
+
+.BadgeQuiz p {
+  margin-bottom: 15px;
+  font-family: "Poppins", sans-serif;
+}

@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "./quiz.css";
 import categories from "../assets/topics";
 import Submit from "../components/Submit.jsx";
-import Badge from "../components/Badge.jsx";
+import Badge from "../components/Badge"; // Import Badge component
 
 function Quiz() {
   const { id } = useParams();
   const { state } = useLocation();
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(1800);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answers, setAnswers] = useState([]);
   const [error, setError] = useState(null);
-  const [userAnswers, setUserAnswers] = useState([]); // New state to store user answers
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [timerId, setTimerId] = useState(null);
+  const [showSubmitPopup, setShowSubmitPopup] = useState(false);
+  const [showBadge, setShowBadge] = useState(false);
+  const [score, setScore] = useState(0);
 
   const topic = state || categories.find((category) => category.id === id);
 
@@ -41,13 +44,17 @@ function Quiz() {
     };
 
     fetchQuestions();
+  }, [topic.id]);
 
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
     }, 1000);
 
+    setTimerId(timer);
+
     return () => clearInterval(timer);
-  }, [topic.id]);
+  }, []);
 
   useEffect(() => {
     if (questions.length > 0 && currentQuestionIndex < questions.length) {
@@ -65,40 +72,40 @@ function Quiz() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const handleNextQuestion = () => {
-    const updatedUserAnswers = [...userAnswers, selectedAnswer]; // Store the selected answer
+    const updatedUserAnswers = [...userAnswers, selectedAnswer];
     setUserAnswers(updatedUserAnswers);
-    // console.log(updatedUserAnswers); // Log the answers array
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedAnswer(""); // Reset selected answer for the next question
+      setSelectedAnswer("");
     } else {
-      // Handle quiz completion
-      let home = document.getElementsByClassName("ALL")[0];
-      home.style.filter = "grayscale(1)";
-      home.style.filter = "brightness(50%)";
-      let popupElement = document.createElement("div");
-      popupElement.className = "YESorNo";
-      ReactDOM.createRoot(popupElement).render(<Submit />);
-      document.querySelector(".poup").appendChild(popupElement);
-
-      // document.querySelector(".poup").removeChild(popupElement);
-      // ReactDOM.createRoot(popupElement).render(<Badge />);
-      // document.querySelector(".poup").appendChild(popupElement);
-
-      const allAnswers = questions.map((question) => question.correct_answer);
-      // console.log("All correct answers:", allAnswers);
-
-      // Calculate the percentage of correct answers
-      const correctAnswersCount = updatedUserAnswers.reduce(
-        (count, answer, index) =>
-          answer === allAnswers[index] ? count + 1 : count,
-        0
-      );
-      const percentage = (correctAnswersCount / questions.length) * 100;
-      console.log(`Percentage of correct answers: ${percentage}%`);
+      clearInterval(timerId); // Stop the timer
+      setShowSubmitPopup(true); // Show the submit popup
     }
-    // console.log("User result:", updatedUserAnswers);
+  };
+
+  const handleSubmit = () => {
+    clearInterval(timerId);
+    const allAnswers = questions.map((question) => question.correct_answer);
+    const correctAnswersCount = userAnswers.reduce(
+      (count, answer, index) =>
+        answer === allAnswers[index] ? count + 1 : count,
+      0
+    );
+    const percentage = (correctAnswersCount / questions.length) * 100;
+    setScore(percentage);
+    console.log(`poucentage : ${percentage}%`);
+    setShowBadge(true); // Show the badge
+    setShowSubmitPopup(false); // Close the popup
+  };
+
+  const handleCancel = () => {
+    setShowSubmitPopup(false); // Close the popup
+    // Restart the timer
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+    setTimerId(timer);
   };
 
   const formatTime = (seconds) => {
@@ -109,7 +116,8 @@ function Quiz() {
 
   return (
     <>
-      <div className="poup"></div>
+      {showBadge && <Badge score={score} />} {/* Render Badge if showBadge is true */}
+      {showSubmitPopup && <Submit onYes={handleSubmit} onNo={handleCancel} />}
       <div className="ALL">
         <div className="defaultHome">
           <div className="AccountDashboard">

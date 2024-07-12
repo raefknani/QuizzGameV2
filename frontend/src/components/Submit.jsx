@@ -1,37 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "../validateQuiz.css";
 import Question from "../assets/SuccessIcon.png";
+import Badge from "./Badge";
 
-function Submit() {
-  // Define the click handler function
+function Submit({ onYes, onNo }) {
+  const [showBadge, setShowBadge] = useState(false);
+
   const handleYesClick = () => {
-    console.log("Yes item clicked");
+    onYes();
+    setShowBadge(true);
   };
+
   const handleNoClick = () => {
-    console.log("No item clicked");
-    let home = document.getElementsByClassName("ALL")[0];
-    home.style.filter = "grayscale(0)";
-    home.style.filter = "brightness(100%)";
-    let quizValidation = document.getElementsByClassName("QuizValidation")[0];
-    quizValidation.remove();
+    onNo();
+    setShowBadge(false);
   };
 
   return (
     <div className="QuizValidation">
       <img src={Question} alt="" />
-      <p>Are you Sure you want to submit Quiz?</p>
+      <p>Are you sure you want to submit the quiz?</p>
       <ul className="liUl">
         <div className="NoElement" onClick={handleNoClick}>
           <li>No</li>
         </div>
         <div>
-          <li className="YesElement" onClick={handleYesClick} >
+          <li className="YesElement" onClick={handleYesClick}>
             Yes
           </li>
         </div>
       </ul>
+      {showBadge && <Badge />}
     </div>
   );
 }
 
-export default Submit;
+export default Submit; // Ensure this line is present
