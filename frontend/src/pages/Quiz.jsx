@@ -5,7 +5,8 @@ import "./quiz.css";
 import categories from "../assets/topics";
 import Submit from "../components/Submit.jsx";
 import Badge from "../components/Badge"; // Import Badge component
-
+import AnswerOptions from "../components/AnswerOptions.jsx";
+import QuestionDisplay from "../components/QuestionDisplay.jsx";
 function Quiz() {
   const { id } = useParams();
   const { state } = useLocation();
@@ -123,113 +124,104 @@ function Quiz() {
 
   return (
     <>
-      {showBadge && <Badge score={score} onReview={handleReview} />}
-      {showSubmitPopup && <Submit onYes={handleSubmit} onNo={handleCancel} />}
-      {reviewQuiz && (
-        <div className="review-section">Review the quiz here.</div>
-      )}{" "}
+      {!reviewQuiz && showBadge && (
+        <Badge score={score} onReview={handleReview} />
+      )}
+      {showSubmitPopup && <Submit onYes={handleSubmit} onNo={handleCancel} />}{" "}
       {/* Render the review section */}
-      <div className="ALL">
-        <div className="defaultHome">
-          <div className="AccountDashboard">
-            <div className="moreBtn">
-              <button onClick={handleNextQuestion}>Next</button>
-            </div>
-            <div className="StartQuiz">
-              <ul>
-                <li className="QuizName">
-                  <h1 className="quiz_name">{topic.id} Quiz</h1>
-                  <p>Answer the question below</p>
-                </li>
-                <li className="timer-quiz">Timer: {formatTime(timeLeft)}</li>
-                {error ? (
-                  <li className="error-message">
-                    <p>Failed to load questions: {error}</p>
+      {
+        <div className="ALL">
+          <div className="defaultHome">
+            <div className="AccountDashboard">
+              <div className="moreBtn">
+                <button onClick={handleNextQuestion}>Next</button>
+              </div>
+              <div className="StartQuiz">
+                <ul>
+                  <li className="QuizName">
+                    <h1 className="quiz_name">{topic.id} Quiz</h1>
+                    <p>Answer the question below</p>
                   </li>
-                ) : (
-                  currentQuestion && (
-                    <>
-                      <li>
-                        <ul style={{ display: "flex" }}>
-                          <li className="Image">
-                            <img src={topic.image} alt="" />
-                          </li>
-                          <li className="QuizQuestion">
-                            <h1>Question {currentQuestionIndex + 1}/5</h1>
-                            <p>{currentQuestion.question}</p>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="QuestionAnswers">
-                        <p>Choose answer</p>
-                        {answers.map((answer, index) => (
-                          <div key={index}>
-                            <input
-                              type="radio"
-                              id={answer}
-                              name="answer"
-                              value={answer}
-                              onChange={(e) =>
-                                setSelectedAnswer(e.target.value)
-                              }
-                              checked={selectedAnswer === answer}
-                            />
-                            <label htmlFor={answer}>{answer}</label>
-                            <br />
-                          </div>
-                        ))}
-                      </li>
-                    </>
-                  )
-                )}
+                  <li className="timer-quiz">Timer: {formatTime(timeLeft)}</li>
+                  {error ? (
+                    <li className="error-message">
+                      <p>Failed to load questions: {error}</p>
+                    </li>
+                  ) : (
+                    currentQuestion && (
+                      <>
+                        <li>
+                          <ul style={{ display: "flex" }}>
+                            <li className="Image">
+                              <img src={topic.image} alt="" />
+                            </li>
+                            {!reviewQuiz && (
+                              <QuestionDisplay
+                                currentQuestionIndex={currentQuestionIndex}
+                                question={currentQuestion.question}
+                              />
+                            )}
+                          </ul>
+                        </li>
+                        {!reviewQuiz && (
+                          <AnswerOptions
+                            answers={answers}
+                            selectedAnswer={selectedAnswer}
+                            setSelectedAnswer={setSelectedAnswer}
+                          />
+                        )}
+                      </>
+                    )
+                  )}
+                </ul>
+              </div>
+            </div>
+            <div>
+              <h1 className="QuizzTime greyy">Quiz Time</h1>
+              <div className="Navbarr">
+                <input type="text" placeholder="Search" className="search" />
+                <Link to="/topics">
+                  <button>Start Quiz</button>
+                </Link>
+                <div className="FullProfile">
+                  <i className="bi bi-person-circle profile"></i>
+                  <span className="profileName">John Doe</span>
+                </div>
+              </div>
+              <ul className="dashboardList">
+                <div className="mainButtons">
+                  <Link to="/dashboard">
+                    <li className="greyy dashboard">
+                      <i className="bi bi-grid-1x2-fill icons">
+                        <span>Dashboard</span>
+                      </i>
+                    </li>
+                  </Link>
+                  <Link to="/support">
+                    <li className="greyy">
+                      <i className="bi bi-headset">
+                        <span>Support</span>
+                      </i>
+                    </li>
+                  </Link>
+                  <Link to="/notifications">
+                    <li className="greyy">
+                      <i className="bi bi-bell-fill">
+                        <span>Notification</span>
+                      </i>
+                    </li>
+                  </Link>
+                </div>
+                <Link to="/login">
+                  <li className="greyy logout">
+                    <i className="bi bi-box-arrow-left"></i>Log Out
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
-          <div>
-            <h1 className="QuizzTime greyy">Quiz Time</h1>
-            <div className="Navbarr">
-              <input type="text" placeholder="Search" className="search" />
-              <Link to="/topics">
-                <button>Start Quiz</button>
-              </Link>
-              <div className="FullProfile">
-                <i className="bi bi-person-circle profile"></i>
-                <span className="profileName">John Doe</span>
-              </div>
-            </div>
-            <ul className="dashboardList">
-              <div className="mainButtons">
-                <Link to="/dashboard">
-                  <li className="greyy dashboard">
-                    <i className="bi bi-grid-1x2-fill icons">
-                      <span>Dashboard</span>
-                    </i>
-                  </li>
-                </Link>
-                <Link to="/support">
-                  <li className="greyy">
-                    <i className="bi bi-headset">
-                      <span>Support</span>
-                    </i>
-                  </li>
-                </Link>
-                <Link to="/notifications">
-                  <li className="greyy">
-                    <i className="bi bi-bell-fill">
-                      <span>Notification</span>
-                    </i>
-                  </li>
-                </Link>
-              </div>
-              <Link to="/login">
-                <li className="greyy logout">
-                  <i className="bi bi-box-arrow-left"></i>Log Out
-                </li>
-              </Link>
-            </ul>
-          </div>
         </div>
-      </div>
+      }
     </>
   );
 }
