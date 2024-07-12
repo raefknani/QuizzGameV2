@@ -20,6 +20,7 @@ function Quiz() {
   const [showSubmitPopup, setShowSubmitPopup] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
   const [score, setScore] = useState(0);
+  const [review, setReview] = useState(false);
 
   const topic = state || categories.find((category) => category.id === id);
 
@@ -59,6 +60,7 @@ function Quiz() {
   useEffect(() => {
     if (questions.length > 0 && currentQuestionIndex < questions.length) {
       const currentQuestion = questions[currentQuestionIndex];
+      console.log(currentQuestion.correct_answer);
       const shuffledAnswers = [
         currentQuestion.correct_answer,
         ...currentQuestion.incorrect_answers,
@@ -87,6 +89,7 @@ function Quiz() {
   const handleSubmit = () => {
     clearInterval(timerId);
     const allAnswers = questions.map((question) => question.correct_answer);
+
     const correctAnswersCount = userAnswers.reduce(
       (count, answer, index) =>
         answer === allAnswers[index] ? count + 1 : count,
@@ -116,7 +119,8 @@ function Quiz() {
 
   return (
     <>
-      {showBadge && <Badge score={score} />} {/* Render Badge if showBadge is true */}
+      {showBadge && <Badge score={score} />}{" "}
+      {/* Render Badge if showBadge is true */}
       {showSubmitPopup && <Submit onYes={handleSubmit} onNo={handleCancel} />}
       <div className="ALL">
         <div className="defaultHome">

@@ -20,13 +20,15 @@ function Badge({ score }) {
 
   function reward() {
     let badge = null;
-    if (score < 40) {
+    if (score < 39) {
       badge = null;
-    } else if (score > 40) {
+    } else if (score > 39 && score < 61) {
       badge = Badge1;
-    } else if (score < 100) {
+    } else if (score > 60 && score < 90) {
       badge = Badge2;
-    } else badge = Badge3;
+    } else if (score == 100) {
+      badge = Badge3;
+    }
     return badge;
   }
 
