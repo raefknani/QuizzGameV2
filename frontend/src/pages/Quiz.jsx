@@ -20,7 +20,7 @@ function Quiz() {
   const [showSubmitPopup, setShowSubmitPopup] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
   const [score, setScore] = useState(0);
-  const [review, setReview] = useState(false);
+  const [reviewQuiz, setReviewQuiz] = useState(false); // State to track review action
 
   const topic = state || categories.find((category) => category.id === id);
 
@@ -97,7 +97,7 @@ function Quiz() {
     );
     const percentage = (correctAnswersCount / questions.length) * 100;
     setScore(percentage);
-    console.log(`poucentage : ${percentage}%`);
+    console.log(`percentage: ${percentage}%`);
     setShowBadge(true); // Show the badge
     setShowSubmitPopup(false); // Close the popup
   };
@@ -111,6 +111,10 @@ function Quiz() {
     setTimerId(timer);
   };
 
+  const handleReview = () => {
+    setReviewQuiz(true);
+  };
+
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -119,9 +123,12 @@ function Quiz() {
 
   return (
     <>
-      {showBadge && <Badge score={score} />}{" "}
-      {/* Render Badge if showBadge is true */}
+      {showBadge && <Badge score={score} onReview={handleReview} />}
       {showSubmitPopup && <Submit onYes={handleSubmit} onNo={handleCancel} />}
+      {reviewQuiz && (
+        <div className="review-section">Review the quiz here.</div>
+      )}{" "}
+      {/* Render the review section */}
       <div className="ALL">
         <div className="defaultHome">
           <div className="AccountDashboard">

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./BadgeQuiz.css";
 import Badge1 from "../assets/Badge1.png";
 import Badge2 from "../assets/Badge2.png";
 import Badge3 from "../assets/Badge3.png";
 
-function Badge({ score }) {
+function Badge({ score, onReview }) {
+  const [review, setReview] = useState(false);
+
+  const handleReviewClick = () => {
+    setReview(true);
+    onReview(); // Call the passed callback function
+    console.log("show review");
+  };
+
   let passedMessage = "Congratulations you have passed";
   let notPassedMessage = "Sorry you haven't passed";
 
@@ -26,7 +34,7 @@ function Badge({ score }) {
       badge = Badge1;
     } else if (score > 60 && score < 90) {
       badge = Badge2;
-    } else if (score == 100) {
+    } else if (score === 100) {
       badge = Badge3;
     }
     return badge;
@@ -62,6 +70,7 @@ function Badge({ score }) {
           fontSize: "16px",
           lineHeight: "24px",
         }}
+        onClick={handleReviewClick}
       >
         Review Quiz
       </p>
