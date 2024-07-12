@@ -24,18 +24,15 @@
   text-align: center;
   width: 180px;
 }
-.QuizValidation ul{
+.QuizValidation ul {
   display: flex;
   position: absolute;
   top: 80%;
   left: 25%;
   transform: translate(-50%, -50%);
   text-align: center;
-  margin-right:50px ;
+  margin-right: 50px;
 }
-.QuizValidation li{
-    margin-left: 210px;
+.QuizValidation li {
+  margin-left: 210px;
 }
-
-
-

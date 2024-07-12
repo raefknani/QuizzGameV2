@@ -5,6 +5,7 @@ import axios from "axios";
 import "./quiz.css";
 import categories from "../assets/topics";
 import Submit from "../components/Submit.jsx";
+import Badge from "../components/Badge.jsx";
 
 function Quiz() {
   const { id } = useParams();
@@ -80,6 +81,10 @@ function Quiz() {
       popupElement.className = "YESorNo";
       ReactDOM.createRoot(popupElement).render(<Submit />);
       document.querySelector(".poup").appendChild(popupElement);
+
+      // document.querySelector(".poup").removeChild(popupElement);
+      // ReactDOM.createRoot(popupElement).render(<Badge />);
+      // document.querySelector(".poup").appendChild(popupElement);
 
       const allAnswers = questions.map((question) => question.correct_answer);
       // console.log("All correct answers:", allAnswers);
