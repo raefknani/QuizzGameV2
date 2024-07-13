@@ -80,6 +80,10 @@
   margin-right: 35px !important;
 }
 
+.QuestionAnswers{
+  width: fit-content;
+}
+
 .QuestionAnswers p {
   font-weight: 600;
   font-size: 23px;

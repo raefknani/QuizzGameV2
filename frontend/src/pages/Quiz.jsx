@@ -7,6 +7,9 @@ import Submit from "../components/Submit.jsx";
 import Badge from "../components/Badge"; // Import Badge component
 import AnswerOptions from "../components/AnswerOptions.jsx";
 import QuestionDisplay from "../components/QuestionDisplay.jsx";
+import QuestionCorrectionDisplay from "../components/QuestionCorrectionDisplay";
+import ReviewQuestion from "../components/ReviewQuestion.jsx";
+
 function Quiz() {
   const { id } = useParams();
   const { state } = useLocation();
@@ -61,7 +64,9 @@ function Quiz() {
   useEffect(() => {
     if (questions.length > 0 && currentQuestionIndex < questions.length) {
       const currentQuestion = questions[currentQuestionIndex];
-      console.log(currentQuestion.correct_answer);
+
+      // console.log(currentQuestion.correct_answer);
+
       const shuffledAnswers = [
         currentQuestion.correct_answer,
         ...currentQuestion.incorrect_answers,
@@ -74,10 +79,21 @@ function Quiz() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  const handleNextQuestion = () => {
-    const updatedUserAnswers = [...userAnswers, selectedAnswer];
-    setUserAnswers(updatedUserAnswers);
+  const handlereviewQuiz = () => {
+    if (reviewQuiz) {
+      console.log("reviewQuiz");
+    }
+  };
+  handlereviewQuiz();
 
+  const handleNextQuestion = () => {
+    // console.log("userAnswers", userAnswers);
+
+    const updatedUserAnswers = [...userAnswers, selectedAnswer];
+
+    // console.log("updatedUserAnswers : ", updatedUserAnswers);
+
+    setUserAnswers(updatedUserAnswers);
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedAnswer("");
@@ -85,11 +101,16 @@ function Quiz() {
       clearInterval(timerId); // Stop the timer
       setShowSubmitPopup(true); // Show the submit popup
     }
+
+    // console.log("user :", updatedUserAnswers);
   };
 
   const handleSubmit = () => {
     clearInterval(timerId);
     const allAnswers = questions.map((question) => question.correct_answer);
+    
+    console.log("all answers: ", allAnswers);
+    console.log("user answers: ", userAnswers)
 
     const correctAnswersCount = userAnswers.reduce(
       (count, answer, index) =>
@@ -98,7 +119,9 @@ function Quiz() {
     );
     const percentage = (correctAnswersCount / questions.length) * 100;
     setScore(percentage);
-    console.log(`percentage: ${percentage}%`);
+
+    // console.log(`percentage: ${percentage}%`);
+
     setShowBadge(true); // Show the badge
     setShowSubmitPopup(false); // Close the popup
   };
@@ -134,7 +157,25 @@ function Quiz() {
           <div className="defaultHome">
             <div className="AccountDashboard">
               <div className="moreBtn">
-                <button onClick={handleNextQuestion}>Next</button>
+                {!reviewQuiz ? (
+                  <button
+                    onClick={() => {
+                      handleNextQuestion();
+
+                      // console.log("hello");
+                    }}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      // console.log("not hello");
+                    }}
+                  >
+                    Next
+                  </button>
+                )}
               </div>
               <div className="StartQuiz">
                 <ul>
@@ -155,6 +196,7 @@ function Quiz() {
                             <li className="Image">
                               <img src={topic.image} alt="" />
                             </li>
+
                             {!reviewQuiz && (
                               <QuestionDisplay
                                 currentQuestionIndex={currentQuestionIndex}
@@ -170,6 +212,7 @@ function Quiz() {
                             setSelectedAnswer={setSelectedAnswer}
                           />
                         )}
+                        {reviewQuiz && <ReviewQuestion />}
                       </>
                     )
                   )}
