@@ -25,7 +25,10 @@ const ReviewQuestion = ({ answers, selectedAnswer, correctAnswer }) => {
           ) : (
             <>
               {selectedAnswer === answer && (
-                <SelectedAnswer selectedAnswer={selectedAnswer} answer={answer} />
+                <SelectedAnswer
+                  selectedAnswer={selectedAnswer}
+                  answer={answer}
+                />
               )}
               {correctAnswer === answer && (
                 <CorrectAnswer correctAnswer={correctAnswer} answer={answer} />

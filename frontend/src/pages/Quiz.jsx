@@ -135,10 +135,18 @@ function Quiz() {
         <div className="defaultHome">
           <div className="AccountDashboard">
             <div className="moreBtn">
-            {currentQuestionIndex < questions.length - 1 ? (
+              {currentQuestionIndex < questions.length - 1 ? (
                 <button onClick={handleNextQuestion}>Next</button>
               ) : (
-                <button onClick={handleSubmit}>Submit</button>
+                <button
+                  onClick={
+                    reviewQuiz
+                      ? () => (window.location.href = "/topics")
+                      : handleSubmit
+                  }
+                >
+                  {reviewQuiz ? "Start Quiz" : "Submit"}
+                </button>
               )}
             </div>
             <div className="StartQuiz">
@@ -147,7 +155,7 @@ function Quiz() {
                   <h1 className="quiz_name">{topic.id} Quiz</h1>
                   <p>Answer the question below</p>
                 </li>
-                <li className="timer-quiz">Timer: {formatTime(timeLeft)}</li>
+                <li className="timer-quiz">Timer: {formatTime(timeLeft)} Mins</li>
                 {error ? (
                   <li className="error-message">
                     <p>Failed to load questions: {error}</p>

@@ -5,7 +5,9 @@ const SelectedAnswer = ({ selectedAnswer, answer }) => {
     <label
       style={{
         color: selectedAnswer === answer ? "#F24E1E" : "white",
-        marginLeft: "10px",
+        marginLeft: "20px",
+        position: "relative",
+        left: "150px",
       }}
       htmlFor={answer}
     >

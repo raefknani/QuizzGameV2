@@ -5,7 +5,9 @@ const CorrectAnswer = ({ correctAnswer, answer }) => {
     <label
       style={{
         color: "blue",
-        marginLeft: "10px",
+        marginLeft: "20px",
+        position: "relative",
+        left: "150px",
       }}
       htmlFor={answer}
     >
