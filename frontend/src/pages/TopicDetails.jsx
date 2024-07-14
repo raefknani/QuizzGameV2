@@ -76,7 +76,9 @@ function TopicDetails() {
         <h1 className="QuizzTime greyy">Quiz Time</h1>
         <div className="Navbarr">
           <input type="text" placeholder="Search" className="search" />
-          <Link to="/topics"><button>Start Quiz</button></Link>
+          <Link to="/topics">
+            <button>Start Quiz</button>
+          </Link>
           <div className="FullProfile">
             <i className="bi bi-person-circle profile"></i>
             <span className="profileName">John Doe</span>

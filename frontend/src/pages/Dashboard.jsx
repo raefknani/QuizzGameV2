@@ -104,20 +104,28 @@ function DefaultHome() {
                   </Link>
                 </div>
                 <ul>
-                  <li className="opt1">
-                    <p>History</p>
-                  </li>
-                  <li className="opt2">
-                    <p>Medcine</p>
-                  </li>
+                  <Link to="/topics/history">
+                    <li className="opt1">
+                      <p>History</p>
+                    </li>
+                  </Link>
+                  <Link to="/topics/medcine">
+                    <li className="opt2">
+                      <p>Medcine</p>
+                    </li>
+                  </Link>
                 </ul>
                 <ul>
-                  <li className="opt3">
-                    <p>Technology</p>
-                  </li>
-                  <li className="opt4">
-                    <p>Agriculture</p>
-                  </li>
+                  <Link to="/topics/technology">
+                    <li className="opt3">
+                      <p>Technology</p>
+                    </li>
+                  </Link>
+                  <Link to="/topics/agriculture">
+                    <li className="opt4">
+                      <p>Agriculture</p>
+                    </li>
+                  </Link>
                 </ul>
               </div>
             </li>

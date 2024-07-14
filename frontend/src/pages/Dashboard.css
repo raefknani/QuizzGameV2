@@ -333,7 +333,8 @@ li i {
   color: white;
   font-size: 25px;
   font-weight: 650;
-  margin-top: 115px;
+  position: absolute;
+  margin-top: 110px;
   margin-left: 20px;
 }
 
